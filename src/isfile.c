@@ -20,12 +20,24 @@
  *  DEALINGS IN THE SOFTWARE.
  *
  */
-#include <lauxhlib.h>
+#include <lauxlib.h>
+#include <lua.h>
+#include <lualib.h>
 
 static int isfile_lua(lua_State *L)
 {
-    lua_settop(L, 1);
-    lua_pushboolean(L, lauxh_isuserdataof(L, 1, LUA_FILEHANDLE));
+    int rc = 0;
+
+    // idx value is wrapped by metatable
+    if (lua_isuserdata(L, 1) && lua_getmetatable(L, 1)) {
+        // get metatable from registry
+        lua_pushstring(L, LUA_FILEHANDLE);
+        lua_rawget(L, LUA_REGISTRYINDEX);
+        // compare
+        rc = lua_rawequal(L, -1, -2);
+        lua_pop(L, 2);
+    }
+    lua_pushboolean(L, rc);
     return 1;
 }
 
