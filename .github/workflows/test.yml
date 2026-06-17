@@ -8,7 +8,24 @@ on:
 
 
 jobs:
+  luacheck:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/mah0x211/lua-ci:latest
+    steps:
+    -
+      name: Checkout
+      uses: actions/checkout@v2
+    -
+      name: Install Tools
+      run: luarocks install luacheck
+    -
+      name: Run luacheck
+      run: |
+        luacheck .
+
   test:
+    needs: luacheck
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/mah0x211/lua-ci:latest
