@@ -62,7 +62,7 @@ jobs:
     -
       name: Run Test
       run: |
-        lua ./test/isfile_test.lua
+        testcase ./test/
     -
       name: Generate coverage reports
       run: |
