@@ -1,17 +1,17 @@
 rockspec_format = "3.0"
-package = 'io-isfile'
-version = 'dev-1'
+package = "io-isfile"
+version = "dev-1"
 source = {
-    url = 'git+https://github.com/mah0x211/lua-io-isfile.git',
+    url = "git+https://github.com/mah0x211/lua-io-isfile.git",
 }
 description = {
-    summary = 'determines whether the argument is the lua file handle or not.',
-    homepage = 'https://github.com/mah0x211/lua-io-isfile',
-    license = 'MIT/X11',
-    maintainer = 'Masatoshi Fukunaga',
+    summary = "determines whether the argument is the lua file handle or not.",
+    homepage = "https://github.com/mah0x211/lua-io-isfile",
+    license = "MIT/X11",
+    maintainer = "Masatoshi Fukunaga",
 }
 dependencies = {
-    'lua >= 5.1',
+    "lua >= 5.1",
 }
 build_dependencies = {
     "luarocks-build-hooks >= 0.8.0",
