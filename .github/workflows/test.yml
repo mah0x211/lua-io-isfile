@@ -26,6 +26,8 @@ jobs:
 
   test:
     needs: luacheck
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/mah0x211/lua-ci:latest
@@ -67,7 +69,9 @@ jobs:
         sh ./covgen.sh
     -
       name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v5
       with:
+        use_oidc: true
+        disable_search: true
         files: ./coverage/lcov.info
         flags: unittests
